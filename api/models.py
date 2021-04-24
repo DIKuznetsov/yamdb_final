@@ -73,9 +73,9 @@ class Title(models.Model):
 
 class Review(models.Model):
     score = models.IntegerField(validators=(
-            MinValueValidator(1),
-            MaxValueValidator(10))
-        )
+        MinValueValidator(1),
+        MaxValueValidator(10))
+    )
     text = models.TextField(null=False)
     pub_date = models.DateTimeField(
         'Дата добавления',

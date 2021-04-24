@@ -1,23 +1,18 @@
-from django.contrib import auth
-from rest_framework import serializers, validators
-from rest_framework.generics import get_object_or_404
-from rest_framework.relations import SlugRelatedField
+from rest_framework import serializers
 
 from .models import Category, Comment, Genre, Review, Title
 
 
 class CategorySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Category
-        exclude = ('id', )
+        exclude = ('id',)
 
 
 class GenreSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Genre
-        exclude = ('id', )
+        exclude = ('id',)
 
 
 class TitleGetSerializer(serializers.ModelSerializer):
@@ -60,13 +55,15 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         fields = "__all__"
         model = Review
-    
+
     def validate(self, attrs):
         if self.context.get('request').method == 'POST':
             title_id = self.context.get('view').kwargs.get('title_id')
             author = self.context.get('request').user
-            if Review.objects.filter(title__id=title_id, author=author).exists():
-                raise serializers.ValidationError('Reviews should not be repeated!')
+            if Review.objects.filter(title__id=title_id,
+                                     author=author).exists():
+                raise serializers.ValidationError(
+                    'Reviews should not be repeated!')
         return attrs
 
 

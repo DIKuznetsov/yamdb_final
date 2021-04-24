@@ -5,7 +5,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class User(AbstractUser):
-
     class Role(models.TextChoices):
         USER = 'user', _('user')
         MODERATOR = 'moderator', _('moderator')
