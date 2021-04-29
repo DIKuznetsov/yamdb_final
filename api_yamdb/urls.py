@@ -6,6 +6,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api/', include('accounts.urls')),
-    path('redoc/', TemplateView.as_view(template_name='redoc.html'),
-         name='redoc'),
+    path('redoc/', TemplateView.as_view(
+        template_name='redoc.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='redoc')
 ]
