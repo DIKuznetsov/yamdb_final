@@ -66,6 +66,9 @@ jobs:
          sudo docker stop $(sudo docker ps -a -q)
          cd yamdb_final
          sudo docker-compose up -d --build
+         sudo docker-compose exec web python manage.py makemigrations accounts
+         sudo docker-compose exec web python manage.py migrate --noinput
+         sudo docker-compose exec web python manage.py collectstatic --no-input
 
 
   send_message:
