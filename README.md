@@ -1,4 +1,5 @@
 # api_yamdb
+[Readme](http://84.252.137.78/redoc/)
 
 ![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 
